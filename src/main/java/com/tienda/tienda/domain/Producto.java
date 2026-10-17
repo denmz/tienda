@@ -6,7 +6,6 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import lombok.*;
 
-
 @Getter
 @Setter
 @NoArgsConstructor
@@ -20,18 +19,13 @@ public class Producto implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_producto")
     private Integer idProducto;
-    @ManyToOne
-@JoinColumn(name = "id_categoria", updatable = false, insertable = false)
-private Categoria categoria;
-
+    //private Integer idCategoria;
     @Column(nullable = false, length = 50)
     @NotBlank(message = "La descripción no puede estar vacía.")
     @Size(max = 50, message = "La descripción no puede tener más de 50 caracteres.")
     private String descripcion;
-
     @Column(columnDefinition = "TEXT")
     private String detalle;
-
     @Column(precision = 12, scale = 2)
     @NotNull(message = "El precio no puede estar vacío.")
     @DecimalMin(value = "0.01", inclusive = true, message = "El precio debe ser mayor a 0.")
@@ -46,4 +40,8 @@ private Categoria categoria;
 
     @Column(nullable = false)
     private boolean activo = true;
+    
+       @ManyToOne
+       @JoinColumn(name = "id_categoria", updatable = false, insertable = false)
+       private Categoria categoria;
 }
