@@ -81,4 +81,10 @@ public class ProductoService {
         return productoRepository.consultaSQL(precioInf, precioSup);
     }
 
+    //declaracion metodo usado en practica #2 
+@Transactional(readOnly = true) 
+public List<Producto> consultaPractica2(int existencias) {
+    return productoRepository.consultaSQL(existencias);
+}
+    
 }
